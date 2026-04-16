@@ -1,0 +1,70 @@
+{
+  "aider-Codestral-v0.1": {
+    "skfold": "aider",
+    "model": "Codestral-v0.1"
+  },
+  "aider-DeepSeek-R1-DQ32B": {
+    "skfold": "aider",
+    "model": "DeepSeek-R1-DQ32B"
+  },
+  "aider-Devstral-24B": {
+    "skfold": "aider",
+    "model": "Devstral-24B"
+  },
+  "aider-Llama-3.3-70B": {
+    "skfold": "aider",
+    "model": "https://huggingface.co/meta-llama/Llama-3.3-70B"
+  },
+  "aider-QwQ-32B": {
+    "skfold": "aider",
+    "model": "QwQ-32B"
+  },
+  "aider-Qwen2.5-Coder-14B": {
+    "skfold": "aider",
+    "model": "https://huggingface.co/Qwen/Qwen2.5-Coder-14B"
+  },
+  "aider-Qwen2.5-Coder-32B": {
+    "skfold": "aider",
+    "model": "https://huggingface.co/Qwen/Qwen2.5-Coder-32B"
+  },
+  "aider-Qwen2.5-Coder-7B": {
+    "skfold": "aider",
+    "model": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B"
+  },
+  "aider-Qwen3-32B": {
+    "skfold": "aider",
+    "model": "https://huggingface.co/Qwen/Qwen3-32B"
+  },
+  "aider-deepseek-r1": {
+    "skfold": "aider",
+    "model": "https://huggingface.co/deepseek-ai/DeepSeek-R1"
+  },
+  "msa-qwen3_coder_next": {
+    "skfold": "mini-swe-agent",
+    "model": "https://huggingface.co/Qwen/Qwen3-Coder-Next"
+  },
+  "msa-minimax_2_5": {
+    "skfold": "mini-swe-agent",
+    "model": "MiniMax-2.5"
+  },
+  "msa_gigacode": {
+    "skfold": "mini-swe-agent",
+    "model": "GigaCode"
+  },
+  "msa-qwen3_235b_a22b_instruct": {
+    "skfold": "mini-swe-agent",
+    "model": "https://huggingface.co/Qwen/Qwen3-235B"
+  },
+  "msa-glm-4.7-flash": {
+    "skfold": "mini-swe-agent",
+    "model": "GLM-4.7-Flash"
+  },
+  "msa-qwen3_coder_30b": {
+    "skfold": "mini-swe-agent",
+    "model": "https://huggingface.co/Qwen/Qwen3-Coder-30B"
+  },
+  "msa-gpt-oss-120b": {
+    "skfold": "mini-swe-agent",
+    "model": "GPT-OSS-120B"
+  }
+}
