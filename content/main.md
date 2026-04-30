@@ -1,20 +1,35 @@
 ---
-header: SWE-MERA – a dynamic alternative to SWE-bench
+header: Dynamic alternative to SWE-bench
 navHome: Main
 navLeaderboard: Leaderboard
+posterAlt: SWE-MERA EMNLP poster
 ---
-
 # Introduction
 
-The rapid advancement of Large Language Models (LLMs) in software engineering has revealed critical limitations in existing benchmarks, particularly the widely used SWE-bench dataset. Recent studies have uncovered severe data contamination issues, where a significant portion of successful patches involve direct solution leakage or pass due to inadequate test cases. **SWE-MERA** addresses these fundamental challenges through an automated collection of real-world GitHub issues and rigorous quality validation.
+SWE-bench is the current standard for evaluating coding agents on tasks derived from real GitHub repositories. However, the dataset is static, has not been updated for over two years, and has likely partially leaked into model training data (both during pretraining and SFT). This undermines evaluation reliability, as models may reproduce memorized solutions instead of genuinely solving tasks.
 
-The complexity of real-world software development encompasses coding agents and a range of text-to-code tasks. While SWE-bench was created from GitHub issues and their corresponding pull requests, its **static nature** leads to two major problems: *data leakage* (models memorizing solutions) and *benchmark saturation* (losing effectiveness as models achieve near-perfect scores).
+**SWE-MERA** addresses these issues through a dynamic approach: tasks are automatically collected from GitHub and regularly updated. This helps maintain relevance, reduce the risk of data leakage, and provide a more reliable evaluation.
 
-SWE-MERA introduces **dynamic quarterly updates** to ensure: (1) real-world relevance — tasks reflect the latest challenges in software development; (2) fair evaluation — models are tested on fresh problems, minimizing data leakage; (3) continuous improvement — the benchmark evolves with advancements in AI and software engineering practices.
+<section class="paper-section">
+<p class="paper-publication">Paper was published at <a href="https://aclanthology.org/2025.emnlp-demos.30/" target="_blank" rel="noopener noreferrer">EMNLP 2025</a>.</p>
+<button class="poster-thumb-button" type="button" onclick="openPoster()" aria-label="Open SWE-MERA poster">
+<img src="./assets/EMNLP_SWE-MERA.png" alt="SWE-MERA EMNLP poster" />
+</button>
+</section>
 
-# Methodology
+## Resources
+- **Paper:** [SWE-MERA: A Dynamic Benchmark for Agenticly Evaluating Large Language Models on Software Engineering Tasks (EMNLP 2025)](https://aclanthology.org/2025.emnlp-demos.30/)
+- **Dataset:** [Hugging Face](https://huggingface.co/datasets/MERA-evaluation/SWE-MERA)
+- **Python Package:** [repositorytest on PyPI](https://pypi.org/project/repositorytest)
+- **Source Code:** [GitHub Repository](https://github.com/MERA-Evaluation/repotest)
+- **Submissions:** [GitHub Submissions](https://github.com/MERA-Evaluation/SWE-MERA-submissions)
+- **Leaderboard:** [View Rankings](#/leaderboard)
+- **Contact:** [mera@a-ai.ru](mailto:mera@a-ai.ru)
 
-## Seven-Stage Collection Pipeline
+# Details
+## Methodology
+
+### Seven-Stage Collection Pipeline
 
 SWE-MERA implements a robust seven-stage pipeline that effectively ensures quality and minimizes contamination risks:
 
@@ -26,7 +41,7 @@ SWE-MERA implements a robust seven-stage pipeline that effectively ensures quali
 6. **End-to-End Task Execution:** Controlled environment testing for reproducibility
 7. **LLM-based Quality Assessment:** Qwen3-32B model evaluates task correctness, test correctness, test completeness, and complexity
 
-## Dataset Statistics
+### Dataset Statistics
 
 - **Scale:** Approximately 10,000 potential tasks identified
 - **Current Availability:** 728 validated samples from 200+ repositories
@@ -36,9 +51,9 @@ SWE-MERA implements a robust seven-stage pipeline that effectively ensures quali
 
 The entire pipeline is implemented as a [Python package](https://pypi.org/project/repositorytest) and can be executed for any GitHub repository, facilitating reproducibility and extensibility.
 
-# Key Features
+## Key Features
 
-## Dynamic Updates
+### Dynamic Updates
 
 Unlike static benchmarks, SWE-MERA is refreshed quarterly with new, unseen issues. This continuous update cycle:
 - Reflects the latest software development challenges
@@ -46,7 +61,7 @@ Unlike static benchmarks, SWE-MERA is refreshed quarterly with new, unseen issue
 - Maintains benchmark discriminative power over time
 - Enables detection of data contamination through temporal analysis
 
-## Quality Validation
+### Quality Validation
 
 Each task undergoes rigorous validation:
 - **Automated Testing:** pytest-based verification in isolated Docker environments
@@ -54,11 +69,11 @@ Each task undergoes rigorous validation:
 - **Real-world Relevance:** Only tasks with actual solutions and comprehensive tests are retained
 - **Complexity Balance:** Both easy and difficult tasks preserved for comprehensive evaluation
 
-## Contamination Detection
+### Contamination Detection
 
 The [interactive leaderboard](#/leaderboard) features a temporal slider enabling users to visualize evaluation metrics across different time periods, identify potential contamination events in model training data, compare performance on pre- and post-cutoff tasks, and ensure transparent and reproducible evaluation.
 
-# Evaluation
+## Evaluation
 
 SWE-MERA demonstrates strong discriminative power across state-of-the-art models. Evaluation using the Aider coding agent on a dozen recent LLMs shows clear performance stratification. The benchmark employs two key metrics: pass@1 (success rate on the first attempt) and pass@6 (success rate across six independent attempts).
 
@@ -68,7 +83,7 @@ Year-over-year comparison reveals interesting patterns, with certain models show
 
 Detailed evaluation results and model trajectories are available on the [leaderboard](#/leaderboard).
 
-# Submission Workflow
+## Submission Workflow
 
 To participate in SWE-MERA evaluation:
 
@@ -76,12 +91,3 @@ To participate in SWE-MERA evaluation:
 2. **Run Agent:** Execute your software engineering agent on the dataset
 3. **Submit Results:** Create a pull request to the [submissions repository](https://github.com/MERA-Evaluation/SWE-MERA-submissions)
 4. **Leaderboard Update:** Valid submissions appear within two working days
-
-# Resources
-
-- **Dataset:** [Hugging Face](https://huggingface.co/datasets/MERA-evaluation/SWE-MERA)
-- **Python Package:** [repositorytest on PyPI](https://pypi.org/project/repositorytest)
-- **Source Code:** [GitHub Repository](https://github.com/MERA-Evaluation/repotest)
-- **Submissions:** [GitHub Submissions](https://github.com/MERA-Evaluation/SWE-MERA-submissions)
-- **Leaderboard:** [View Rankings](#/leaderboard)
-- **Contact:** [mera@a-ai.ru](mailto:mera@a-ai.ru)

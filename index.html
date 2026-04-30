@@ -211,6 +211,89 @@
       filter: brightness(0) invert(1);
     }
 
+    .paper-section {
+      width: 100%;
+      max-width: 760px;
+      padding: 0;
+      margin: 28px auto 36px;
+      text-align: center;
+    }
+    .paper-publication {
+      color: #334155;
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .paper-publication a {
+      color: #7c3aed;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .poster-thumb-button {
+      display: block;
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      cursor: zoom-in;
+      box-shadow: 0 4px 24px rgba(15, 23, 42, 0.18);
+      overflow: hidden;
+    }
+    .poster-thumb-button img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .poster-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.86);
+      overflow: hidden;
+    }
+    .poster-modal.hidden {
+      display: none;
+    }
+    .poster-modal-close {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      z-index: 1001;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 50%;
+      background: #fff;
+      color: #1e293b;
+      font-family: 'Roboto', sans-serif;
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    }
+    .poster-modal-scroll {
+      width: 100%;
+      height: 100%;
+      padding: 76px 24px 32px;
+      overflow: auto;
+      text-align: center;
+    }
+    .poster-modal-scroll img {
+      width: min(100%, 1200px);
+      max-width: none;
+      height: auto;
+      background: #fff;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
+    body.poster-modal-open {
+      overflow: hidden;
+    }
+
     /* ===== MAIN ===== */
     .main {
       display: flex; 
@@ -250,6 +333,26 @@
       margin-bottom: 16px;
       color: #1e293b;
     }
+    .description h3 {
+      font-size: clamp(1rem, 1.4vw, 1.25rem);
+      font-weight: 700;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: #334155;
+    }
+    .description details {
+      margin-top: 28px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+    }
+    .description summary {
+      color: #1e293b;
+      cursor: pointer;
+      font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+      font-weight: 700;
+      list-style-position: inside;
+      margin-bottom: 8px;
+    }
     .description ul, .description ol {
       margin-bottom: 16px;
       padding-left: 24px;
@@ -275,6 +378,11 @@
       border-radius: 8px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
     }
+    .description .poster-thumb-button img {
+      margin: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
 
     /* ===== LEADERBOARD ===== */
     .leaderboard-page {
@@ -294,6 +402,16 @@
       text-align: center;
       margin-top: 16px;
       margin-bottom: 24px;
+    }
+
+    .leaderboard-description {
+      text-align: left;
+      color: #475569;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      margin: 0 0 16px;
+      max-width: 100%;
     }
 
     /* ===== DUAL RANGE SLIDER ===== */
@@ -572,6 +690,22 @@
         width: 248px; 
         height: 65px; 
       }
+      .paper-section {
+        margin: 22px auto 28px;
+      }
+      .poster-modal {
+        overflow: hidden;
+      }
+      .poster-modal-close {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        font-size: 25px;
+      }
+      .poster-modal-scroll {
+        padding: 62px 12px 24px;
+      }
       .leaderboard-page { 
         padding: 12px; 
         width: 100%;
@@ -607,6 +741,9 @@
       <a class="nav-btn" href="#/leaderboard" id="navLeaderboard">
         <span data-text="leaderboard">Leaderboard</span>
       </a>
+      <a class="nav-btn" href="https://multi-lcb.github.io/" target="_blank" rel="noopener noreferrer">
+        <span>MULTI-LCB(new)</span>
+      </a>
       <div class="lang-toggle" id="langToggle">
         <button id="btnEng" class="active" onclick="setLang('eng')">ENG</button>
         <button id="btnRu" onclick="setLang('ru')">RU</button>
@@ -621,6 +758,9 @@
     </a>
     <a class="nav-btn" href="#/leaderboard" onclick="closeMobileMenu()">
       <span data-text="leaderboard">Leaderboard</span>
+    </a>
+    <a class="nav-btn" href="https://multi-lcb.github.io/" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">
+      <span>Multi-LCB</span>
     </a>
     <div class="lang-toggle">
       <button onclick="setLang('eng'); closeMobileMenu();">ENG</button>
@@ -650,12 +790,14 @@
     <!-- DESCRIPTION PAGE (Main) -->
     <div id="page-description" class="description">
       <h2 data-text="headerBlockFirst">Description</h2>
-      <p data-text="textBlockFirst"></p>
+      <div data-text="textBlockFirst"></div>
     </div>
 
     <!-- LEADERBOARD PAGE -->
     <div id="page-leaderboard" class="leaderboard-page hidden">
       <h2 class="leaderboard-title" data-text="leaderboard">Leaderboard</h2>
+
+      <p class="leaderboard-description" data-text="leaderboardDescription"></p>
       
       <!-- Dual range date slider -->
       <div class="slider-section">
@@ -687,10 +829,6 @@
       <!-- Filter checkboxes -->
       <div class="filter-checkboxes">
         <div class="checkbox-item">
-          <input type="checkbox" id="checkHideDel" checked onchange="updateTable()" />
-          <label for="checkHideDel">Hide del-* models</label>
-        </div>
-        <div class="checkbox-item">
           <input type="checkbox" id="checkIntersect" onchange="updateTable()" />
           <label for="checkIntersect">Show only intersecting instance_id</label>
         </div>
@@ -699,6 +837,13 @@
   </main>
 
   </div><!-- end page-wrapper -->
+
+  <div class="poster-modal hidden" id="posterModal" onclick="handlePosterBackdropClick(event)" aria-modal="true" role="dialog">
+    <button class="poster-modal-close" type="button" onclick="closePoster()" aria-label="Close poster">&times;</button>
+    <div class="poster-modal-scroll" id="posterModalScroll">
+      <img id="posterModalImage" src="./assets/EMNLP_SWE-MERA.png" alt="SWE-MERA EMNLP poster" data-attr-alt="posterAlt" />
+    </div>
+  </div>
 
 <script>
 // ============================================================
@@ -729,12 +874,12 @@ function parseFrontMatter(text) {
 
 function parseMainBody(body) {
   const lines = body.split('\n');
-  let title = '';
   let htmlParts = [];
   let currentP = '';
   let inList = false;
   let listItems = [];
   let inOrderedList = false;
+  let inDetails = false;
   
   const flushParagraph = () => {
     if (currentP) {
@@ -769,12 +914,28 @@ function parseMainBody(body) {
       flushList();
       continue;
     }
+
+    // Allow localized content files to embed small HTML blocks.
+    if (trimmed.startsWith('<') && trimmed.endsWith('>')) {
+      flushParagraph();
+      flushList();
+      htmlParts.push(trimmed);
+      continue;
+    }
     
     // Заголовок H1
     if (trimmed.startsWith('# ')) {
       flushParagraph();
       flushList();
-      title = trimmed.slice(2).trim();
+      const rawHeading = trimmed.slice(2).trim();
+      const heading = formatInline(rawHeading);
+      if (['details', 'подробности'].includes(rawHeading.toLowerCase())) {
+        if (inDetails) htmlParts.push('</details>');
+        htmlParts.push('<details><summary>' + heading + '</summary>');
+        inDetails = true;
+      } else {
+        htmlParts.push('<h2>' + heading + '</h2>');
+      }
       continue;
     }
     
@@ -783,6 +944,14 @@ function parseMainBody(body) {
       flushParagraph();
       flushList();
       htmlParts.push('<h2>' + formatInline(trimmed.slice(3).trim()) + '</h2>');
+      continue;
+    }
+
+    // Заголовок H3
+    if (trimmed.startsWith('### ')) {
+      flushParagraph();
+      flushList();
+      htmlParts.push('<h3>' + formatInline(trimmed.slice(4).trim()) + '</h3>');
       continue;
     }
     
@@ -830,9 +999,10 @@ function parseMainBody(body) {
   // Не забываем flush в конце
   flushParagraph();
   flushList();
+  if (inDetails) htmlParts.push('</details>');
   
   const content = htmlParts.join('');
-  return { title, content };
+  return { content };
 }
 
 function contentPath(file) {
@@ -869,9 +1039,11 @@ async function loadContent() {
       header:             main.meta.header          || 'SWE-MERA',
       home:               main.meta.navHome          || 'Main',
       leaderboard:        main.meta.navLeaderboard   || 'Leaderboard',
-      headerBlockFirst:   mainBody.title              || 'Description',
+      posterAlt:          main.meta.posterAlt        || 'SWE-MERA EMNLP poster',
+      headerBlockFirst:   main.meta.title             || '',
       textBlockFirst:     mainBody.content            || '',
       dateRange:          lb.meta.dateRange           || 'Date range',
+      leaderboardDescription: lb.meta.leaderboardDescription || '',
       notExistedData:     lb.meta.notExistedData      || 'No data for this period',
       sliderInfo:         lb.meta.sliderInfo          || 'There are {n} tasks in time window: {from} to {to}',
       footnoteSubset:     lb.meta.footnoteSubset      || '* Model was evaluated on a subset of tasks.',
@@ -907,7 +1079,7 @@ let originalData = [];
 // I18N HELPERS
 // ============================================================
 function t(key) { 
-  return TEXT[key] || key; 
+  return Object.prototype.hasOwnProperty.call(TEXT, key) ? TEXT[key] : key; 
 }
 
 function setLang(newLang) {
@@ -921,10 +1093,40 @@ function updateAllTexts() {
   document.querySelectorAll("[data-text]").forEach(el => {
     const key = el.getAttribute("data-text");
     const val = t(key);
+    if (val === '') {
+      el.classList.add("hidden");
+      el.textContent = '';
+      return;
+    }
+    el.classList.remove("hidden");
     if (val && val.includes("<")) el.innerHTML = val; 
     else el.textContent = val;
   });
+  document.querySelectorAll("[data-attr-alt]").forEach(el => {
+    el.setAttribute("alt", t(el.getAttribute("data-attr-alt")));
+  });
 }
+
+function openPoster() {
+  document.getElementById("posterModal").classList.remove("hidden");
+  document.body.classList.add("poster-modal-open");
+  document.getElementById("posterModalScroll").scrollTo({ top: 0, left: 0 });
+}
+
+function closePoster() {
+  document.getElementById("posterModal").classList.add("hidden");
+  document.body.classList.remove("poster-modal-open");
+}
+
+function handlePosterBackdropClick(event) {
+  if (event.target.id === "posterModal") closePoster();
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && !document.getElementById("posterModal").classList.contains("hidden")) {
+    closePoster();
+  }
+});
 
 // ============================================================
 // ROUTING
@@ -1139,15 +1341,9 @@ function updateTable() {
   let filteredData = filterByDate(allData, new Date(startDate), new Date(endDate));
   
   // Применяем фильтры чекбоксов
-  const hideDel = document.getElementById('checkHideDel')?.checked;
   const intersectOnly = document.getElementById('checkIntersect')?.checked;
   
-  // Фильтр 1: скрыть del-* модели
-  if (hideDel) {
-    filteredData = filteredData.filter(row => !row.model.startsWith('del-'));
-  }
-  
-  // Фильтр 2: показать только пересекающиеся instance_id
+  // Фильтр: показать только пересекающиеся instance_id
   if (intersectOnly) {
     // Находим instance_id которые есть у всех моделей
     const modelGroups = {};
